@@ -23,6 +23,9 @@ function App() {
     setQuestion(random);
     setSelectedChoice('');
     setIsSubmitted(false);
+
+    // save current category in URL hash
+    window.location.hash = `?category=${key}`;
   };
 
   // 🖱️ CLICK CATEGORY
@@ -30,13 +33,14 @@ function App() {
     loadQuestion(key);
   };
 
-  // 📱 QR AUTO DETECT
+  // 📱 AUTO LOAD CATEGORY ON REFRESH / QR
   useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
+    const hash = window.location.hash.replace('#', '');
+    const params = new URLSearchParams(hash);
     const category = params.get('category') as CategoryKey | null;
 
     if (category && questions[category]) {
-      loadQuestion(category);
+      loadQuestion(category); // generates NEW random question
     }
   }, []);
 
@@ -46,12 +50,14 @@ function App() {
 
     setIsSubmitted(true);
 
-    // auto return to homepage after delay
     setTimeout(() => {
       setSelectedCategory(null);
       setQuestion(null);
       setSelectedChoice('');
       setIsSubmitted(false);
+
+      // back to homepage
+      window.location.hash = '';
     }, 1500);
   };
 
@@ -91,9 +97,9 @@ function App() {
 
               if (isSubmitted) {
                 if (isCorrect) {
-                  bgColor = 'bg-green-400'; // correct
+                  bgColor = 'bg-green-400';
                 } else if (isSelected && !isCorrect) {
-                  bgColor = 'bg-red-400'; // wrong
+                  bgColor = 'bg-red-400';
                 }
               } else if (isSelected) {
                 bgColor = 'bg-purple-300';
