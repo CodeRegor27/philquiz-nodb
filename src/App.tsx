@@ -1,9 +1,9 @@
-import "./App.css";
-import { useState, useEffect } from "react";
-import { questions } from "../data/philQuizQuestions.tsx";
-import type { CategoryKey, QuestionType } from "../types/quiz";
-import { categories } from "../data/philQuizCategories.tsx";
-import CategoryCard from "../components/categoryCard.tsx";
+import './App.css';
+import { useState, useEffect } from 'react';
+import { questions } from '../data/philQuizQuestions.tsx';
+import type { CategoryKey, QuestionType } from '../types/quiz';
+import { categories } from '../data/philQuizCategories.tsx';
+import CategoryCard from '../components/categoryCard.tsx';
 
 function App() {
   const [selectedCategory, setSelectedCategory] = useState<CategoryKey | null>(
@@ -11,7 +11,7 @@ function App() {
   );
 
   const [question, setQuestion] = useState<QuestionType | null>(null);
-  const [selectedChoice, setSelectedChoice] = useState("");
+  const [selectedChoice, setSelectedChoice] = useState('');
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   // 🎯 LOAD QUESTION
@@ -21,11 +21,8 @@ function App() {
 
     setSelectedCategory(key);
     setQuestion(random);
-    setSelectedChoice("");
+    setSelectedChoice('');
     setIsSubmitted(false);
-
-    // clean URL after QR load
-    window.history.replaceState({}, "", "/");
   };
 
   // 🖱️ CLICK CATEGORY
@@ -36,7 +33,7 @@ function App() {
   // 📱 QR AUTO DETECT
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
-    const category = params.get("category") as CategoryKey | null;
+    const category = params.get('category') as CategoryKey | null;
 
     if (category && questions[category]) {
       loadQuestion(category);
@@ -53,7 +50,7 @@ function App() {
     setTimeout(() => {
       setSelectedCategory(null);
       setQuestion(null);
-      setSelectedChoice("");
+      setSelectedChoice('');
       setIsSubmitted(false);
     }, 1500);
   };
@@ -90,16 +87,16 @@ function App() {
               const isCorrect = choice === question.answer;
               const isSelected = choice === selectedChoice;
 
-              let bgColor = "bg-gray-200";
+              let bgColor = 'bg-gray-200';
 
               if (isSubmitted) {
                 if (isCorrect) {
-                  bgColor = "bg-green-400"; // correct
+                  bgColor = 'bg-green-400'; // correct
                 } else if (isSelected && !isCorrect) {
-                  bgColor = "bg-red-400"; // wrong
+                  bgColor = 'bg-red-400'; // wrong
                 }
               } else if (isSelected) {
-                bgColor = "bg-purple-300";
+                bgColor = 'bg-purple-300';
               }
 
               return (
