@@ -103,9 +103,7 @@ function Quiz() {
             </h2>
 
             <p className="text-gray-500 text-sm">
-              {isCorrectAnswer
-                ? "Great job!"
-                : `Correct answer: ${question.answer}`}
+              {isCorrectAnswer ? "Tumpak!" : `Tamang Sagot: ${question.answer}`}
             </p>
           </div>
         </div>
