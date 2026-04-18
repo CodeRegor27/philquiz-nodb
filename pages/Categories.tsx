@@ -13,7 +13,7 @@ function Home() {
       <div className="flex items-center w-full max-w-md mb-10">
         <div className="flex-1 h-px bg-white/40"></div>
         <span className="font-display px-4 text-sm text-white/70">
-          Choose Category
+          Choose a Category
         </span>
         <div className="flex-1 h-px bg-white/40"></div>
       </div>
