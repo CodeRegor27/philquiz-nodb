@@ -25,7 +25,7 @@ export default function CategoryCard({
         />
 
         {/* FIX: clamp text to prevent height differences */}
-        <p className="font-semibold text-sm sm:text-base md:text-lg lg:text-xl text-white line-clamp-2">
+        <p className="font-display text-sm sm:text-base md:text-lg lg:text-xl text-white line-clamp-2">
           {name}
         </p>
       </div>
